@@ -1,0 +1,24 @@
+{
+  "name": "nodeapp",
+  "version": "1.0.0",
+  "description": "Application for learing purpose ",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RjSingh1529/NodeApp.git"
+  },
+  "author": "Rajesh_Kumar_@rksmech79@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RjSingh1529/NodeApp/issues"
+  },
+  "homepage": "https://github.com/RjSingh1529/NodeApp#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^3.0.1",
+    "uuid": "^9.0.1"
+  }
+}
