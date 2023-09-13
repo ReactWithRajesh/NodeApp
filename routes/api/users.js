@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const uuid = require('uuid')
 let users = require('../../users');
-const { runInNewContext } = require('vm');
 
 //get all users
 router.get('/', (req, res) => {
@@ -43,9 +42,9 @@ router.post('/', (req, res) => {
 
 // Update User 
 router.put('/:id', (req, res) => {
-    const index = users.some(user => user.id === parseInt(req.params.id))
+    const found = users.some(user => user.id === parseInt(req.params.id))
 
-    if (index) {
+    if (found) {
         users.forEach(user => {
             if (user.id === parseInt(req.params.id)) {
                 user.name = req.body.name ? req.body.name : user.name
@@ -57,6 +56,27 @@ router.put('/:id', (req, res) => {
     else {
         res.status(400).json({ msg: 'User Not Found' })
 
+    }
+})
+
+//delete user
+router.delete('/:id', (req, res) => {
+    try {
+        const found = users.some(user => user.id === parseInt(req.params.id))
+        if (found) {
+            users = users.filter(user => user.id !== parseInt(req.params.id))
+            res.json({
+                msg: 'User delted successfully.', users
+            })
+        }
+        else {
+            res.status(400).json({ msg: 'User Not Found' })
+        }
+    }
+    catch (err) {
+        res.status(400).send({
+            err: err.message
+        })
     }
 })
 
